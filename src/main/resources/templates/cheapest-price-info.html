@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Price Stealer</title>
+    <link th:insert="index :: price-stealer-bootstrap">
+    <style>
+        .navbar {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<!-- create navigation bar ( header) -->
+<nav th:insert="index :: navbar-price-stealer"></nav>
+<br><br><br><br>
+
+<div th:insert="cheapest-price :: cheapest-price-form-search-game-info"></div>
+
+<div th:if="${gameResponses != null && gameResponses.size() != 0}" class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="example" class="table table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Store name</th>
+                    <th>Sale price</th>
+                    <th>Retail price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="game : ${gameResponses}">
+                    <td th:text="${game.name}">Name</td>
+                    <td th:text="${game.storeName}">storeName</td>
+                    <td th:text="${game.salePrice}">salePrice</td>
+                    <td th:text="${game.retailPrice}">retailPrice</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- show warning if nothing was found-->
+<div th:if="${gameResponses == null || gameResponses.isEmpty()}" class="alert alert-warning" role="alert">
+    Oops! Nothing was found! Try another game
+</div>
+</body>
+</html>

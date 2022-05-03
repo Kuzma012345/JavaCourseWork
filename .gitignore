@@ -1,0 +1,6 @@
+# Intellij Idea
+target
+.idea
+
+# JPA Buddy
+.jpb

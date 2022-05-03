@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Price Stealer</title>
+    <link th:insert="index :: price-stealer-bootstrap">
+    <style>
+        .navbar {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav th:insert="index :: navbar-price-stealer"></nav>
+    <br><br><br><br>
+
+    <div th:if="${errors != null && !errors.isEmpty()}">
+        <div th:each="err : ${errors}">
+            <div class="alert alert-danger" th:text="${err}"></div>
+        </div>
+    </div>
+
+    <div>
+        <h1>Search in store</h1>
+        <div>
+            <form th:action="@{/search/store/game/params}" method="get" th:object="${searchInStoreRequestDto}">
+                <select th:name="title" th:fragment="store-search-select-stores">
+                    <option th:each="store : ${stores}" th:value="${store.getStoreName()}"
+                            th:text="${store.getStoreName()}">
+                    </option>
+                </select><br>
+                <input  size="30" type="text" th:name="lowerPrice" placeholder="lower price"><br>
+                <input  size="30" type="text" th:name="upperPrice" placeholder="upper price"><br>
+                <input class="btn btn-primary" type="submit" value="Search">
+            </form>
+        </div>
+    </div>
+
+    <div th:if="${results != null && !results.isEmpty()}" class="container">
+        <div class="row">
+            <div class="col-lg-10 mt-5 mb-5">
+                <table id="example" class="table table-bordered" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Sale price</th>
+                        <th>Retail price</th>
+                        <th>Savings</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="deal : ${results}">
+                        <td th:text="${deal.getTitle()}">Name</td>
+                        <td th:text="${deal.getSalePrice()}">Sale price</td>
+                        <td th:text="${deal.getNormalPrice()}">Retail price</td>
+                        <td th:text="${deal.getSavings()}">Savings</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

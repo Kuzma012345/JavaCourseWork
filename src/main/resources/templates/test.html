@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://atuin.ru/demo/ui-slider/jquery-ui.min.js"></script>
+    <script>
+        $( "#polzunok" ).slider({
+            animate: "slow",
+            range: "min",
+            value: 50
+        });
+    </script>
+</head>
+<body>
+<div class="polzunok-container">
+    <div id="polzunok" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+        <div class="ui-slider-range ui-corner-all ui-widget-header ui-slider-range-min" style="width: 57%;"></div>
+        <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 57%;">
+        </span>
+    </div>
+</div>
+<!--<input type="range" min="0" max="100" step="1" value="50" >-->
+</body>
+</html>

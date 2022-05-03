@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: price-stealer
+
+  flyway:
+    enabled: true
+#   error when choose default db/migration path and set 'compact middle packages' in Idea
+    locations: classpath:migration
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://dockertoolbox:5432/price-stealer
+    username: price-stealer
+    password: price-stealer
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  session:
+    timeout: 15m
+    store-type: jdbc
+    jdbc:
+      initialize-schema: never
+
+feign:
+  cheapshark-api:
+    url: https://www.cheapshark.com
+    path: /api/1.0

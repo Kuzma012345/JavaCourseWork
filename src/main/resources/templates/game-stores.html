@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Price Stealer</title>
+    <link th:insert="index :: price-stealer-bootstrap">
+    <style th:inline="text">
+        .navbar {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<!-- create navigation bar ( header) -->
+<nav th:insert="index :: navbar-price-stealer"></nav>
+
+<br><br><br><br>
+
+<div th:fragment="game-stores-search-store">
+    <h1>Show game stores</h1>
+    <div>
+        <form th:action="@{/search/store}" method="get">
+            <input  size="40" type="text" th:name="title" placeholder="Enter game title to search stores">
+            <input class="btn btn-primary" type="submit" value="Search">
+        </form>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>

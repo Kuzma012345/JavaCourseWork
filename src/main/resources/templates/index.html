@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Price Stealer</title>
+
+	<link th:fragment="price-stealer-bootstrap" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+	<style>
+		.navbar {
+			background-color: black;
+		}
+	</style>
+
+</head>
+<body>
+	<!-- create navigation bar ( header) -->
+	<nav th:fragment="navbar-price-stealer" class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Registration and
+					Login</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()">
+						<a th:href="@{/logout}">Logout</a>
+					</li>
+					<li sec:authorize="isAuthenticated()">
+						<a th:href="@{/home/cheapest-price}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Search for the cheapest price for the game you are interested in">Cheapest price search</a>
+					</li>
+					<li sec:authorize="isAuthenticated()">
+						<a th:href="@{/home/store}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Output of all available stores selling the game you are interested in">Show game stores</a>
+					</li>
+					<li sec:authorize="isAuthenticated()">
+						<a th:href="@{/home/store-search}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Search for games in a specific store">Search in store</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<br><br><br><br>
+
+	<div class="container">
+		<div class="alert alert-success">
+			<strong>Success!</strong> Login Successful.
+		</div>
+	</div>
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+</body>
+</html>
